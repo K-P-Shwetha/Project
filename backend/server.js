@@ -23,5 +23,8 @@ app.use("/api", regRoute);
 app.use("/api", loginRoute);
 app.use("/api/transactions", transactionRoutes);
 
+app.get("/api/hello", (req, res) => {
+    res.json({ message: "Hello from Express on Vercel!" });
+  });
 // Server Listen
 module.exports.handler = serverless(app);
