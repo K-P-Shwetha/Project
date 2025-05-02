@@ -1,5 +1,4 @@
 const express = require("express");
-const serverless = require("serverless-http");
 const connectDB = require("./config/db");
 require("dotenv").config();
 const cors = require("cors");
@@ -11,20 +10,19 @@ const transactionRoutes = require("./routes/transactionRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect Database first
+// Connect Database
 connectDB();
 
 // Middleware
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-app.use(express.json()); // JSON parser
+app.use(express.json());
 
 // Routes
 app.use("/api", regRoute);
 app.use("/api", loginRoute);
 app.use("/api/transactions", transactionRoutes);
 
-app.get("/api/hello", (req, res) => {
-    res.json({ message: "Hello from Express on Vercel!" });
-  });
-// Server Listen
-module.exports.handler = serverless(app);
+// Listen for local development only
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
