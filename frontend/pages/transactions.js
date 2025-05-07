@@ -6,10 +6,13 @@ import axios from "axios";
 
 export default function Transactions() {
   const [trans, setTrans] = useState([]);
-
+  const userToken = localStorage.getItem("token");
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/transactions");
+      const res = await axios.get("http://localhost:5000/api/transactions",  {
+        headers: {
+          Authorization: `Bearer ${userToken}`
+      }});
       setTrans(res.data);
     } catch (err) {
       console.error("Failed to fetch:", err.response?.data || err.message);
@@ -24,8 +27,9 @@ export default function Transactions() {
     try {
       const res = await axios.post("http://localhost:5000/api/transactions", data, {
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
       });
       setTrans((prev) => [...prev, res.data]);
     } catch (err) {

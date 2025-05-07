@@ -1,0 +1,33 @@
+h2{
+    font-size: 25px;
+   font-weight: 800;
+   margin-top:2vw;
+   margin-left:1vw;
+}
+.download-btn {
+    
+    background-color: #4caf50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top:5vw;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: 1vw;
+    padding: 5px;
+  }
+.btn{
+    background-color: #ec1616;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top:2vw;
+    margin-bottom: auto;
+    width:35%;
+    margin-left: 1vw;
+    padding: 2px;
+}
+.f{
+    display: inline-block;
+}
+  
