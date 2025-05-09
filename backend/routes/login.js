@@ -6,7 +6,6 @@ const loginValidation = require('../validation/login');
 const generateToken = require('../utils/generateToken');
 
 
-
 Router.post('/login', async (req, res) => {
   try {
     console.log("1: Login body", req.body); // Check if body exists

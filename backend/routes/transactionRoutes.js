@@ -36,4 +36,19 @@ router.post("/", authmidware,async (req, res) => {
   }
 });
 
+// DELETE /api/transactions/:id
+router.delete("/:id", authmidware, async (req, res) => {
+  try {
+    const transaction = await Transaction.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user.id, // secure: only delete user's own
+    });
+
+    if (!transaction) return res.status(404).json({ message: "Transaction not found" });
+    res.json({ message: "Deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 module.exports = router;
